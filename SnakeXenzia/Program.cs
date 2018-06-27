@@ -1,16 +1,38 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SnakeXenzia
 {
+    public class Pos
+    {
+        public int x{get;set;}
+        public int y{get;set;}
+    }
     class Program
     {
         static char [][] grid=new char[20][];
         static int width=50;
         static int height=20;
+        static List<Pos> worm=new List<Pos>();
+        static int worm_x=25;
+        static int worm_y=9; 
         static void Main(string[] args)
         {
             InitFrame();
             DrawFrame();
+            InitWorm();
+        }
+
+        private static void InitWorm()
+        {
+            worm.Add(new Pos{x=21, y=9});
+            worm.Add(new Pos{x=22, y=9});
+            worm.Add(new Pos{x=23, y=9});
+            worm.Add(new Pos{x=24, y=9});
+            worm.Add(new Pos{x=25, y=9});
+
+            foreach(var p in worm)
+             grid[p.x][p.y]='o';
         }
 
         private static void DrawFrame()
