@@ -10,6 +10,21 @@ namespace SnakeXenzia
         static void Main(string[] args)
         {
             InitFrame();
+            DrawFrame();
+        }
+
+        private static void DrawFrame()
+        {
+            Console.BackgroundColor=ConsoleColor.Black;
+            Console.ForegroundColor=ConsoleColor.Green;
+            Console.Clear();
+
+            for(int y=0;y<height;y++)
+             for(int x=0;x<width;x++)
+             {
+                 Console.SetCursorPosition(x,y);
+                 Console.Write(grid[y][x].ToString());
+             }
         }
 
         private static void InitFrame()
@@ -30,8 +45,8 @@ namespace SnakeXenzia
            }
            for(int i=1;i<width-1;i++)
            {
-               grid[i][0]='=';
-               grid[i][height-1]='=';
+               grid[0][i]='=';
+               grid[height-1][i]='=';
            } 
            for(int i=1;i<height-1;i++)
             for(int c=1;c<width-1;c++)

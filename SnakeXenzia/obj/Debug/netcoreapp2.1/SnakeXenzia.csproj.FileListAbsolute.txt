@@ -1,0 +1,11 @@
+D:\Programming\C#\SnakeXenzia\SnakeXenzia\bin\Debug\netcoreapp2.1\SnakeXenzia.deps.json
+D:\Programming\C#\SnakeXenzia\SnakeXenzia\bin\Debug\netcoreapp2.1\SnakeXenzia.runtimeconfig.json
+D:\Programming\C#\SnakeXenzia\SnakeXenzia\bin\Debug\netcoreapp2.1\SnakeXenzia.runtimeconfig.dev.json
+D:\Programming\C#\SnakeXenzia\SnakeXenzia\bin\Debug\netcoreapp2.1\SnakeXenzia.dll
+D:\Programming\C#\SnakeXenzia\SnakeXenzia\bin\Debug\netcoreapp2.1\SnakeXenzia.pdb
+D:\Programming\C#\SnakeXenzia\SnakeXenzia\obj\Debug\netcoreapp2.1\SnakeXenzia.csprojAssemblyReference.cache
+D:\Programming\C#\SnakeXenzia\SnakeXenzia\obj\Debug\netcoreapp2.1\SnakeXenzia.csproj.CoreCompileInputs.cache
+D:\Programming\C#\SnakeXenzia\SnakeXenzia\obj\Debug\netcoreapp2.1\SnakeXenzia.AssemblyInfoInputs.cache
+D:\Programming\C#\SnakeXenzia\SnakeXenzia\obj\Debug\netcoreapp2.1\SnakeXenzia.AssemblyInfo.cs
+D:\Programming\C#\SnakeXenzia\SnakeXenzia\obj\Debug\netcoreapp2.1\SnakeXenzia.dll
+D:\Programming\C#\SnakeXenzia\SnakeXenzia\obj\Debug\netcoreapp2.1\SnakeXenzia.pdb
