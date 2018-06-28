@@ -27,6 +27,9 @@ namespace SnakeXenzia
         }
 
         private static Direction current = Direction.Right;
+        private static int wormLength = 5;
+        private static int lengthTimer = 0;
+        private static int lengthTime = 0;
         static void Main()
         {
             InitFrame();
@@ -37,9 +40,96 @@ namespace SnakeXenzia
             while (!isOver)
             {
                 DrawWormHead();
+                Pause();
+                ControlWorm();
                 DrawWormBodyOnHeadPosition();
                 MoveWormHead();
+                if (IsGameOver())
+                    isOver = true;
+                IncreaseWormLength();
+                DeleteWormTail();
             }
+            Console.SetCursorPosition(0,20);
+            Console.WriteLine("Game Over");
+        }
+
+        private static void IncreaseWormLength()
+        {
+            lengthTimer++;
+            if (lengthTimer == lengthTime)
+            {
+                lengthTimer = 0;
+                wormLength++;
+            }
+        }
+
+        private static void ControlWorm()
+        {
+            ConsoleKeyInfo s;
+            if (Console.KeyAvailable)
+            {
+                s = Console.ReadKey();
+                switch (s.Key)
+                {
+                    case ConsoleKey.UpArrow:
+                        if (current != Direction.Down)
+                        {
+                            current = Direction.Up;
+                           //PlayMoveSound();
+                        }
+                        break;
+
+                    case ConsoleKey.DownArrow:
+                        if (current != Direction.Up)
+                        {
+                            current = Direction.Down;
+                            //PlayMoveSound();
+                        }
+                        break;
+
+                    case ConsoleKey.LeftArrow:
+                        if (current != Direction.Right)
+                        {
+                            current = Direction.Left;
+                            //PlayMoveSound();
+                        }
+                        break;
+
+                    case ConsoleKey.RightArrow:
+                        if (current != Direction.Left)
+                        {
+                            current = Direction.Right;
+                            //PlayMoveSound();
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private static void DeleteWormTail()
+        {
+            Console.SetCursorPosition(worm[0].X, worm[0].Y);
+            Console.Write(' ');
+            if (worm.Count != wormLength)
+            {
+                grid[worm[0].Y][worm[0].X] = ' ';
+                worm.RemoveAt(0);
+            }
+        }
+    
+
+        private static bool IsGameOver()
+        {
+            var value = grid[_wormY][_wormX] != ' ';
+            return value;
+        }
+
+        private static void Pause()
+        {
+            System.Threading.Thread.Sleep(100);
         }
 
         private static void MoveWormHead()
