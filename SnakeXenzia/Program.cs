@@ -21,6 +21,12 @@ namespace SnakeXenzia
             InitFrame();
             DrawFrame();
             InitWorm();
+            DrawWorm();
+        }
+
+        private static void DrawWorm()
+        {
+            
         }
 
         private static void InitWorm()
@@ -32,7 +38,7 @@ namespace SnakeXenzia
             worm.Add(new Pos{x=25, y=9});
 
             foreach(var p in worm)
-             grid[p.x][p.y]='o';
+             grid[p.y][p.x]='o';
         }
 
         private static void DrawFrame()
