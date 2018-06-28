@@ -5,47 +5,113 @@ namespace SnakeXenzia
 {
     public class Pos
     {
-        public int x{get;set;}
-        public int y{get;set;}
+        public int X{get;set;}
+        public int Y{get;set;}
     }
     class Program
     {
-        static char [][] grid=new char[20][];
-        static int width=50;
-        static int height=20;
-        static List<Pos> worm=new List<Pos>();
-        static int worm_x=25;
-        static int worm_y=9; 
-        static void Main(string[] args)
+        private static char [][] grid=new char[20][];
+        private static int width=50;
+        private static int height=20;
+        private static List<Pos> worm=new List<Pos>();
+        private static int _wormX = 25;
+        private static int _wormY = 9;
+        private static bool isOver = false;
+        
+        private enum Direction
+        {
+            Up=1,
+            Down=2,
+            Left=3,
+            Right=4
+        }
+
+        private static Direction current = Direction.Right;
+        static void Main()
         {
             InitFrame();
             DrawFrame();
             InitWorm();
             DrawWorm();
+
+            while (!isOver)
+            {
+                DrawWormHead();
+                DrawWormBodyOnHeadPosition();
+                MoveWormHead();
+            }
+        }
+
+        private static void MoveWormHead()
+        {
+            grid[_wormY][_wormX] = 'o';
+            switch (current)
+            {
+                case Direction.Up:
+                    _wormY--;
+                    break;
+                case Direction.Down:
+                    _wormY++;
+                    break;
+                case Direction.Left:
+                    _wormX--;
+                    break;
+                case Direction.Right:
+                    _wormX++;
+                    break;
+            }
+            worm.Add(new Pos{X =_wormX, Y=_wormY});
+        }
+
+        private static void DrawWormBodyOnHeadPosition()
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.SetCursorPosition(_wormX, _wormY);
+            Console.Write('o');
+        }
+
+        private static void DrawWormHead()
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.SetCursorPosition(_wormX, _wormY);
+            Console.Write('@');
+
         }
 
         private static void DrawWorm()
         {
-            
+            int count = 0;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            foreach (var wormPart in worm)
+            {
+                Console.SetCursorPosition(wormPart.X, wormPart.Y);
+                count++;
+                if(count<5)
+                    Console.Write('o');
+                else
+                {
+                    Console.Write('o');
+                }
+            }
         }
 
         private static void InitWorm()
         {
-            worm.Add(new Pos{x=21, y=9});
-            worm.Add(new Pos{x=22, y=9});
-            worm.Add(new Pos{x=23, y=9});
-            worm.Add(new Pos{x=24, y=9});
-            worm.Add(new Pos{x=25, y=9});
+            worm.Add(new Pos{X=21, Y=9});
+            worm.Add(new Pos{X=22, Y=9});
+            worm.Add(new Pos{X=23, Y=9});
+            worm.Add(new Pos{X=24, Y=9});
+            worm.Add(new Pos{X=25, Y=9});
 
             foreach(var p in worm)
-             grid[p.y][p.x]='o';
+             grid[p.Y][p.X]='o';
         }
 
         private static void DrawFrame()
         {
             Console.BackgroundColor=ConsoleColor.Black;
             Console.ForegroundColor=ConsoleColor.Green;
-            Console.Clear();
+            //Console.Clear();
 
             for(int y=0;y<height;y++)
              for(int x=0;x<width;x++)
@@ -57,7 +123,7 @@ namespace SnakeXenzia
 
         private static void InitFrame()
         {
-           Console.CursorVisible=false;
+          // Console.CursorVisible=false;
            for(int i=0;i<height;i++)
              grid[i]=new char[width];
 
