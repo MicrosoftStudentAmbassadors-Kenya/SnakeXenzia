@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SnakeXenzia
+﻿namespace SnakeXenzia.Classes
 {
    public class Pos
     {

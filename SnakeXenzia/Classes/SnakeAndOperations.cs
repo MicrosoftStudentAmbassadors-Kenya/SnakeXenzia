@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SnakeXenzia.Classes
 {
-   public  class SnakeAndOperations
+   public static class SnakeAndOperations
     {
         private static List<Pos> worm = new List<Pos>();
-        public static int _wormX = 25;
-        public static int _wormY = 9;
-        private static int wormLength = 5;
+        public static int WormX = 25;
+        public static int WormY = 9;
+        private static int _wormLength = 5;
 
-        public enum Direction
+        private enum Direction
         {
             Up = 1,
             Down = 2,
@@ -19,41 +18,41 @@ namespace SnakeXenzia.Classes
             Right = 4
         }
 
-        private static Direction current = Direction.Right;
+        private static Direction _current = Direction.Right;
 
         public static void MoveWormHead()
         {
-            GridAndOperations.grid[_wormY][_wormX] = 'o';
-            switch (current)
+            GridAndOperations.grid[WormY][WormX] = 'o';
+            switch (_current)
             {
                 case Direction.Up:
-                    _wormY--;
+                    WormY--;
                     break;
                 case Direction.Down:
-                    _wormY++;
+                    WormY++;
                     break;
                 case Direction.Left:
-                    _wormX--;
+                    WormX--;
                     break;
                 case Direction.Right:
-                    _wormX++;
+                    WormX++;
                     break;
             }
 
-            worm.Add(new Pos { X = _wormX, Y = _wormY });
+            worm.Add(new Pos { X = WormX, Y = WormY });
         }
 
         public static void DrawWormBodyOnHeadPosition()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.SetCursorPosition(_wormX, _wormY);
+            Console.SetCursorPosition(WormX, WormY);
             Console.Write('o');
         }
 
         public static void DrawWormHead()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.SetCursorPosition(_wormX, _wormY);
+            Console.SetCursorPosition(WormX, WormY);
             Console.Write('@');
 
         }
@@ -88,7 +87,7 @@ namespace SnakeXenzia.Classes
 
         public static void IncreaseWormLength()
         {
-            wormLength++;
+            _wormLength++;
         }
 
         public static void ControlWorm()
@@ -100,38 +99,35 @@ namespace SnakeXenzia.Classes
                 switch (s.Key)
                 {
                     case ConsoleKey.UpArrow:
-                        if (current !=Direction.Down)
+                        if (_current !=Direction.Down)
                         {
-                            current = Direction.Up;
+                            _current = Direction.Up;
                             //PlayMoveSound();
                         }
                         break;
 
                     case ConsoleKey.DownArrow:
-                        if (current != Direction.Up)
+                        if (_current != Direction.Up)
                         {
-                            current = Direction.Down;
+                            _current = Direction.Down;
                             //PlayMoveSound();
                         }
                         break;
 
                     case ConsoleKey.LeftArrow:
-                        if (current != Direction.Right)
+                        if (_current != Direction.Right)
                         {
-                            current = Direction.Left;
+                            _current = Direction.Left;
                             //PlayMoveSound();
                         }
                         break;
 
                     case ConsoleKey.RightArrow:
-                        if (current != Direction.Left)
+                        if (_current != Direction.Left)
                         {
-                            current = Direction.Right;
+                            _current = Direction.Right;
                             //PlayMoveSound();
                         }
-                        break;
-
-                    default:
                         break;
                 }
             }
@@ -141,7 +137,7 @@ namespace SnakeXenzia.Classes
         {
             Console.SetCursorPosition(worm[0].X, worm[0].Y);
             Console.Write(' ');
-            if (worm.Count != wormLength)
+            if (worm.Count != _wormLength)
             {
                 GridAndOperations.grid[worm[0].Y][worm[0].X] = ' ';
                 worm.RemoveAt(0);

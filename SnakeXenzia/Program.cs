@@ -1,73 +1,67 @@
 ﻿using System;
-using System.Collections.Generic;
-using SnakeXenzia.Classes;
+using static SnakeXenzia.Classes.GridAndOperations;
+using static SnakeXenzia.Classes.SnakeAndOperations;
+using static SnakeXenzia.Classes.TargetAndOperations;
+using static SnakeXenzia.Classes.Levels;
 
 namespace SnakeXenzia
 {
-    class Program
+    static class Program
     {
- 
-        private static bool isOver = false;
-        private static int score = 0;
-
+        private static bool _isOver;
+        private static int _score;
 
         static void Main()
         {
             Console.Title = "Snake Xenzia";
-            GridAndOperations.InitFrame();
-            GridAndOperations.DrawFrame();
-            SnakeAndOperations.InitWorm();
-            SnakeAndOperations.DrawWorm();
-            TargetAndOperations.SetTargetPosition();
+            GetLevel();
+            InitFrame();
+            DrawFrame();
+            InitWorm();
+            DrawWorm();
+            SetTargetPosition();
             Score();
-            while (!isOver)
+            while (!_isOver)
             {
-                SnakeAndOperations.DrawWormHead();
-                if (TargetAndOperations.TargetIsTaken())
+                DrawWormHead();
+                if (TargetIsTaken())
                 {
-                    score += 10;
+                    _score += 10;
                     Score();
-                    SnakeAndOperations.IncreaseWormLength();
-                    TargetAndOperations.SetTargetPosition();
+                    IncreaseWormLength();
+                    SetTargetPosition();
                 }
                 
-                Pause();
-                SnakeAndOperations.ControlWorm();
-                SnakeAndOperations.DrawWormBodyOnHeadPosition();
-                SnakeAndOperations.MoveWormHead();
+                Pause(Level);
+                ControlWorm();
+                DrawWormBodyOnHeadPosition();
+                MoveWormHead();
                 if (IsGameOver())
-                    isOver = true;
-                SnakeAndOperations.DeleteWormTail();
+                    _isOver = true;
+                DeleteWormTail();
             }
             Console.SetCursorPosition(0,20);
             Console.WriteLine("Game Over");
-            Console.WriteLine($"Your Score : {score}");
+            Console.WriteLine($"Your Score : {_score}");
             Console.ReadKey();
+        }
+
+        private static void Pause(int lev)
+        {
+            System.Threading.Thread.Sleep(lev);
         }
 
         private static void Score()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.SetCursorPosition(52,0);
-            Console.Write($"Score : {score} ");
+            Console.Write($"Score : {_score} ");
 
         }
-
-
-
-
-
-    
-
         private static bool IsGameOver()
         {
-            var value = GridAndOperations.grid[SnakeAndOperations._wormY][SnakeAndOperations._wormX] != ' ';
+            var value = grid[WormY][WormX] != ' ';
             return value;
-        }
-
-        private static void Pause()
-        {
-            System.Threading.Thread.Sleep(100);
         }
     }
 }

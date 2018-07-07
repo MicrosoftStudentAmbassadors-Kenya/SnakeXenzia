@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SnakeXenzia.Classes
 {
    public static class TargetAndOperations
     {
-        public static int targetX;
-        public static int targetY;
+        private static int _targetX;
+        private static int _targetY;
 
         public static bool TargetIsTaken()
         {
-            return SnakeAndOperations._wormX == targetX && SnakeAndOperations._wormY == targetY;
+            return SnakeAndOperations.WormX == _targetX && SnakeAndOperations.WormY == _targetY;
         }
 
         public static void SetTargetPosition()
@@ -25,10 +23,10 @@ namespace SnakeXenzia.Classes
                 y = rand.Next(1, GridAndOperations.height - 1);
             }
 
-            targetX = x;
-            targetY = y;
+            _targetX = x;
+            _targetY = y;
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.SetCursorPosition(targetX, targetY);
+            Console.SetCursorPosition(_targetX, _targetY);
             Console.Write("X");
         }
     }
