@@ -35,6 +35,11 @@ namespace SnakeXenzia
             while (!isOver)
             {
                 DrawWormHead();
+                if (TargetIsTaken())
+                {
+                    SetTargetPosition();
+                    IncreaseWormLength();
+                }
                 Pause();
                 ControlWorm();
                 DrawWormBodyOnHeadPosition();
@@ -47,6 +52,16 @@ namespace SnakeXenzia
             Console.WriteLine("Game Over");
         }
 
+        private static void IncreaseWormLength()
+        {
+            wormLength++;
+        }
+
+        private static bool TargetIsTaken()
+        {
+            return _wormX == targetX && _wormY == targetY;
+        }
+
         private static void SetTargetPosition()
         {
             var rand=new Random();
@@ -55,7 +70,7 @@ namespace SnakeXenzia
             if (grid[y][x] != null)
             {
                 x = rand.Next(1, width - 1);
-                y = rand.Next(1, height);
+                y = rand.Next(1, height-1);
             }
 
             targetX = x;
