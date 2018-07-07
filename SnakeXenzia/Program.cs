@@ -44,6 +44,7 @@ namespace SnakeXenzia
                     IncreaseWormLength();
                     SetTargetPosition();
                 }
+                
                 Pause();
                 ControlWorm();
                 DrawWormBodyOnHeadPosition();
@@ -54,6 +55,8 @@ namespace SnakeXenzia
             }
             Console.SetCursorPosition(0,20);
             Console.WriteLine("Game Over");
+            Console.WriteLine($"Your Score : {score}");
+            Console.ReadKey();
         }
 
         private static void Score()
