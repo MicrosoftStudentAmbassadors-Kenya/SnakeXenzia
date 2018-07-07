@@ -3,14 +3,9 @@ using System.Collections.Generic;
 
 namespace SnakeXenzia
 {
-    public class Pos
-    {
-        public int X{get;set;}
-        public int Y{get;set;}
-    }
     class Program
     {
-        private static char [][] grid=new char[20][];
+        private static char? [][] grid=new char?[20][];
         private static int width=50;
         private static int height=20;
         private static List<Pos> worm=new List<Pos>();
@@ -28,15 +23,15 @@ namespace SnakeXenzia
 
         private static Direction current = Direction.Right;
         private static int wormLength = 5;
-        private static int lengthTimer = 0;
-        private static int lengthTime = 0;
+        private static int targetX;
+        private static int targetY;
         static void Main()
         {
             InitFrame();
             DrawFrame();
             InitWorm();
             DrawWorm();
-
+            SetTargetPosition();
             while (!isOver)
             {
                 DrawWormHead();
@@ -46,22 +41,31 @@ namespace SnakeXenzia
                 MoveWormHead();
                 if (IsGameOver())
                     isOver = true;
-                IncreaseWormLength();
                 DeleteWormTail();
             }
             Console.SetCursorPosition(0,20);
             Console.WriteLine("Game Over");
         }
 
-        private static void IncreaseWormLength()
+        private static void SetTargetPosition()
         {
-            lengthTimer++;
-            if (lengthTimer == lengthTime)
+            var rand=new Random();
+            int x = 0;
+            int y = 0;
+            if (grid[y][x] != null)
             {
-                lengthTimer = 0;
-                wormLength++;
+                x = rand.Next(1, width - 1);
+                y = rand.Next(1, height);
             }
+
+            targetX = x;
+            targetY = y;
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.SetCursorPosition(targetX,targetY);
+            Console.Write("X");
         }
+
+
 
         private static void ControlWorm()
         {
@@ -215,7 +219,7 @@ namespace SnakeXenzia
         {
           // Console.CursorVisible=false;
            for(int i=0;i<height;i++)
-             grid[i]=new char[width];
+             grid[i]=new char?[width];
 
            grid[0][0]='0';
            grid[0][width-1]='0';
