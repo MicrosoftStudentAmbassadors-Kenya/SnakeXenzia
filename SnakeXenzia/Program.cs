@@ -12,6 +12,7 @@ namespace SnakeXenzia
         private static int _wormX = 25;
         private static int _wormY = 9;
         private static bool isOver = false;
+        private static int score = 0;
         
         private enum Direction
         {
@@ -32,13 +33,16 @@ namespace SnakeXenzia
             InitWorm();
             DrawWorm();
             SetTargetPosition();
+            Score();
             while (!isOver)
             {
                 DrawWormHead();
                 if (TargetIsTaken())
                 {
-                    SetTargetPosition();
+                    score += 10;
+                    Score();
                     IncreaseWormLength();
+                    SetTargetPosition();
                 }
                 Pause();
                 ControlWorm();
@@ -52,9 +56,17 @@ namespace SnakeXenzia
             Console.WriteLine("Game Over");
         }
 
+        private static void Score()
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.SetCursorPosition(52,0);
+            Console.Write($"Score : {score} ");
+
+        }
+
         private static void IncreaseWormLength()
         {
-            wormLength++;
+            wormLength ++;
         }
 
         private static bool TargetIsTaken()
