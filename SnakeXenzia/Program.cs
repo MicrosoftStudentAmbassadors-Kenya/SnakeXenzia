@@ -11,7 +11,7 @@ namespace SnakeXenzia
         private static bool _isOver;
         private static int _score;
 
-        static void Main()
+        public static void Main()
         {
             Console.Title = "Snake Xenzia";
             GetLevel();
@@ -43,7 +43,28 @@ namespace SnakeXenzia
             Console.SetCursorPosition(0,20);
             Console.WriteLine("Game Over");
             Console.WriteLine($"Your Score : {_score}");
-            Console.ReadKey();
+            ContinueGameOrExit();
+
+        }
+
+        private static void ContinueGameOrExit()
+        {
+            Console.Clear();
+            Console.WriteLine("Press Enter Key to Continue playing or Q to quit");
+            ConsoleKeyInfo k = Console.ReadKey();
+            switch (k.Key)
+            {
+                case ConsoleKey.Enter:
+                    Main();
+                    break;
+                case ConsoleKey.Q:
+                    Console.Clear();
+                    Console.WriteLine("Thanks for playing");
+                    break;
+                default:
+                    ContinueGameOrExit();
+                    break;
+            }
         }
 
         private static void Pause(int lev)

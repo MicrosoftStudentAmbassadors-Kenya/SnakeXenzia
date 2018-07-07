@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static SnakeXenzia.Program;
 
 namespace SnakeXenzia.Classes
 {
@@ -11,11 +12,11 @@ namespace SnakeXenzia.Classes
         public static void  GetLevel()
         {
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Choose Your level to begin");
+            Console.WriteLine("Choose Your level");
             Console.WriteLine("1. Easy");
             Console.WriteLine("2. Hard");
             Console.WriteLine("3. Hard");
-            Console.WriteLine("3. Expert");
+            Console.WriteLine("4. Expert");
             var input = Console.ReadLine();
             switch (input)
             {
@@ -33,7 +34,7 @@ namespace SnakeXenzia.Classes
                     break;
                 default:
                     Console.WriteLine("Select a valid level");
-                    GetLevel();
+                    Main();
                     break;
             }
         }
