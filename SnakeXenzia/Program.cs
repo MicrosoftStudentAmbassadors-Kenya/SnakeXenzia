@@ -55,7 +55,7 @@ namespace SnakeXenzia
             switch (k.Key)
             {
                 case ConsoleKey.Enter:
-                    Main();
+                    Main1();
                     break;
                 case ConsoleKey.Q:
                     Console.Clear();

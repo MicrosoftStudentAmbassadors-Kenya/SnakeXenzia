@@ -34,7 +34,7 @@ namespace SnakeXenzia.Classes
                     break;
                 default:
                     Console.WriteLine("Select a valid level");
-                    Main();
+                    Main1();
                     break;
             }
         }

@@ -5,7 +5,7 @@ namespace SnakeXenzia.Classes
 {
    public static class SnakeAndOperations
     {
-        private static List<Pos> worm = new List<Pos>();
+        private static List<Positon> worm = new List<Positon>();
         public static int WormX = 25;
         public static int WormY = 9;
         private static int _wormLength = 5;
@@ -39,7 +39,7 @@ namespace SnakeXenzia.Classes
                     break;
             }
 
-            worm.Add(new Pos { X = WormX, Y = WormY });
+            worm.Add(new Positon { X = WormX, Y = WormY });
         }
 
         public static void DrawWormBodyOnHeadPosition()
@@ -76,11 +76,11 @@ namespace SnakeXenzia.Classes
 
         public static void InitWorm()
         {
-            worm.Add(new Pos { X = 21, Y = 9 });
-            worm.Add(new Pos { X = 22, Y = 9 });
-            worm.Add(new Pos { X = 23, Y = 9 });
-            worm.Add(new Pos { X = 24, Y = 9 });
-            worm.Add(new Pos { X = 25, Y = 9 });
+            worm.Add(new Positon { X = 21, Y = 9 });
+            worm.Add(new Positon { X = 22, Y = 9 });
+            worm.Add(new Positon { X = 23, Y = 9 });
+            worm.Add(new Positon { X = 24, Y = 9 });
+            worm.Add(new Positon { X = 25, Y = 9 });
 
             foreach (var p in worm) GridAndOperations.grid[p.Y][p.X] = 'o';
         }
