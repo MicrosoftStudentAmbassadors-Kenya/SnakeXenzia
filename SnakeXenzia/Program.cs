@@ -11,7 +11,7 @@ namespace SnakeXenzia
         private static bool _isOver;
         private static int _score;
 
-        public static void Main()
+        public static void Main1()
         {
             Console.Title = "Snake Xenzia";
             GetLevel();
