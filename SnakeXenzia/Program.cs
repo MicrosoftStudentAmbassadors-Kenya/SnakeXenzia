@@ -24,15 +24,15 @@ namespace SnakeXenzia
             while (!_isOver)
             {
                 DrawWormHead();
-                if (TargetIsTaken())
-                {
-                    _score += 10;
-                    Score();
-                    IncreaseWormLength();
-                    SetTargetPosition();
-                }
+                //if (TargetIsTaken())
+                //{
+                //    _score += 10;
+                //    Score();
+                //    IncreaseWormLength();
+                //    SetTargetPosition();
+                //}
                 
-                Pause(Level);
+                //Pause(Level);
                 ControlWorm();
                 DrawWormBodyOnHeadPosition();
                 MoveWormHead();
